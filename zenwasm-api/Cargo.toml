@@ -1,0 +1,12 @@
+[package]
+name = "zenwasm-api"
+version = "0.1.0"
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Host-side library for loading zenwasm-abi plugin via dlopen — no wasmtime dependency"
+
+[dependencies]
+zenwasm-types = { path = "../zenwasm-types" }
+libloading = "0.8"
+thiserror = "2"
