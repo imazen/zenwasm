@@ -11,4 +11,4 @@ crate-type = ["cdylib"]
 
 [dependencies]
 zenwasm-types = { path = "../zenwasm-types" }
-wasmtime = { version = "41", default-features = false, features = ["cranelift", "runtime"] }
+wasmtime = { version = "43", default-features = false, features = ["cranelift", "runtime"] }

@@ -8,5 +8,5 @@ description = "Host-side library for loading zenwasm-abi plugin via dlopen — n
 
 [dependencies]
 zenwasm-types = { path = "../zenwasm-types" }
-libloading = "0.8"
+libloading = "0.9"
 thiserror = "2"
