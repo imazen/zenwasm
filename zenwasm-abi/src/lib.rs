@@ -30,10 +30,7 @@ pub extern "C" fn zenwasm_abi_version() -> u32 {
 /// # Safety
 /// `wasm_bytes` must point to `wasm_len` valid bytes.
 #[unsafe(no_mangle)]
-pub unsafe extern "C" fn zenwasm_load(
-    wasm_bytes: *const u8,
-    wasm_len: usize,
-) -> i64 {
+pub unsafe extern "C" fn zenwasm_load(wasm_bytes: *const u8, wasm_len: usize) -> i64 {
     if wasm_bytes.is_null() {
         return ErrorCode::InvalidModule as i64;
     }
@@ -244,7 +241,10 @@ pub unsafe extern "C" fn zenwasm_call(
             })
             .collect();
 
-        if func.call(&mut m.store, &wasm_args, &mut wasm_results).is_err() {
+        if func
+            .call(&mut m.store, &wasm_args, &mut wasm_results)
+            .is_err()
+        {
             return ErrorCode::CallFailed as i32;
         }
 

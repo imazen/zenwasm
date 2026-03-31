@@ -96,8 +96,7 @@ impl WasmRuntime {
     /// Load a WASM module from bytes.
     #[allow(unsafe_code)]
     pub fn load_module(&self, wasm_bytes: &[u8]) -> Result<ModuleHandle<'_>, Error> {
-        let handle =
-            unsafe { (self.fn_load)(wasm_bytes.as_ptr(), wasm_bytes.len()) };
+        let handle = unsafe { (self.fn_load)(wasm_bytes.as_ptr(), wasm_bytes.len()) };
         if handle < 0 {
             return Err(Error::ModuleLoad(handle));
         }
@@ -129,9 +128,7 @@ impl<'r> ModuleHandle<'r> {
     /// This is the only copy in the pipeline — host buffer → WASM memory.
     #[allow(unsafe_code)]
     pub fn write(&self, offset: u32, data: &[u8]) -> Result<(), Error> {
-        let rc = unsafe {
-            (self.runtime.fn_write)(self.handle, offset, data.as_ptr(), data.len())
-        };
+        let rc = unsafe { (self.runtime.fn_write)(self.handle, offset, data.as_ptr(), data.len()) };
         if rc != 0 {
             return Err(Error::CallFailed(rc));
         }
@@ -165,9 +162,7 @@ impl<'r> ModuleHandle<'r> {
             return Err(Error::MemoryAccess);
         }
 
-        let slice = unsafe {
-            std::slice::from_raw_parts(base.add(offset as usize), len as usize)
-        };
+        let slice = unsafe { std::slice::from_raw_parts(base.add(offset as usize), len as usize) };
         Ok(slice)
     }
 
@@ -182,12 +177,7 @@ impl<'r> ModuleHandle<'r> {
 
     /// Call a WASM function by name with i64 arguments, returning i64 results.
     #[allow(unsafe_code)]
-    pub fn call_func(
-        &self,
-        name: &str,
-        args: &[i64],
-        n_results: u32,
-    ) -> Result<Vec<i64>, Error> {
+    pub fn call_func(&self, name: &str, args: &[i64], n_results: u32) -> Result<Vec<i64>, Error> {
         let mut results = vec![0i64; n_results as usize];
 
         let rc = unsafe {
