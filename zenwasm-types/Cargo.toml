@@ -5,3 +5,17 @@ edition.workspace = true
 rust-version.workspace = true
 license.workspace = true
 description = "Shared #[repr(C)] types and conventions for WASM module plugins"
+exclude = [
+    "CLAUDE.md",
+    "CONTEXT-HANDOFF.md",
+    "FEEDBACK.md",
+    ".claude/",
+    ".superwork/",
+    ".zenbench/",
+    "copter-report/",
+    ".github/",
+    "Cross.toml",
+    "justfile",
+    "Cargo.toml.original.txt",
+    "fuzz/",
+]

@@ -5,8 +5,22 @@ edition.workspace = true
 rust-version.workspace = true
 license.workspace = true
 description = "Host-side library for loading zenwasm-abi plugin via dlopen — no wasmtime dependency"
+exclude = [
+    "CLAUDE.md",
+    "CONTEXT-HANDOFF.md",
+    "FEEDBACK.md",
+    ".claude/",
+    ".superwork/",
+    ".zenbench/",
+    "copter-report/",
+    ".github/",
+    "Cross.toml",
+    "justfile",
+    "Cargo.toml.original.txt",
+    "fuzz/",
+]
 
 [dependencies]
-zenwasm-types = { path = "../zenwasm-types" }
+zenwasm-types = { path = "../zenwasm-types" , version = "0.1.0" }
 libloading = "0.9"
 thiserror = "2"

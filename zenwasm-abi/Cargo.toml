@@ -5,10 +5,24 @@ edition.workspace = true
 rust-version.workspace = true
 license.workspace = true
 description = "cdylib plugin wrapping wasmtime behind a C ABI for WASM module hosting"
+exclude = [
+    "CLAUDE.md",
+    "CONTEXT-HANDOFF.md",
+    "FEEDBACK.md",
+    ".claude/",
+    ".superwork/",
+    ".zenbench/",
+    "copter-report/",
+    ".github/",
+    "Cross.toml",
+    "justfile",
+    "Cargo.toml.original.txt",
+    "fuzz/",
+]
 
 [lib]
 crate-type = ["cdylib"]
 
 [dependencies]
-zenwasm-types = { path = "../zenwasm-types" }
+zenwasm-types = { path = "../zenwasm-types" , version = "0.1.0" }
 wasmtime = { version = "43", default-features = false, features = ["cranelift", "runtime"] }
