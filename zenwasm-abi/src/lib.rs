@@ -65,12 +65,11 @@ pub unsafe extern "C" fn zenwasm_load(wasm_bytes: *const u8, wasm_len: usize) ->
         };
 
         // Check ABI version if exported
-        if let Ok(fn_version) = instance.get_typed_func::<(), u32>(&mut store, FN_ABI_VERSION) {
-            if let Ok(v) = fn_version.call(&mut store, ()) {
-                if v != ABI_VERSION {
-                    return ErrorCode::AbiMismatch as i64;
-                }
-            }
+        if let Ok(fn_version) = instance.get_typed_func::<(), u32>(&mut store, FN_ABI_VERSION)
+            && let Ok(v) = fn_version.call(&mut store, ())
+            && v != ABI_VERSION
+        {
+            return ErrorCode::AbiMismatch as i64;
         }
 
         let loaded = LoadedModule {
