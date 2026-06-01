@@ -56,3 +56,6 @@ Cargo.toml.original.txt
 *.profraw
 *.profdata
 fuzz-*.log
+
+# Agent coordination
+.workongoing
