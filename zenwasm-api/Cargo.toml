@@ -5,6 +5,7 @@ edition.workspace = true
 rust-version.workspace = true
 license.workspace = true
 description = "Host-side library for loading zenwasm-abi plugin via dlopen — no wasmtime dependency"
+readme = "../README.crates.md"
 exclude = [
     "CLAUDE.md",
     "CONTEXT-HANDOFF.md",
