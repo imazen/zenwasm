@@ -1,6 +1,6 @@
 <!-- GENERATED FROM README.md by zenutils gen-readme-crates.sh — DO NOT EDIT. -->
 
-# zenwasm [![CI](https://img.shields.io/github/actions/workflow/status/imazen/zenwasm/ci.yml?style=flat-square&label=CI)](https://github.com/imazen/zenwasm/actions/workflows/ci.yml)
+# zenwasm
 
 zenwasm runs sandboxed WASM modules — compiled C/C++ codecs, image filters, anything untrusted — from a Rust host **without linking [wasmtime](https://wasmtime.dev/) into your application binary**. wasmtime lives behind a `cdylib` plugin you load at runtime; your app depends only on a small host loader (`libloading` + `thiserror`). Reads out of WASM linear memory are zero-copy. The shared-types crate is `no_std` + `#![forbid(unsafe_code)]`; the host loader and plugin confine `unsafe` to the FFI boundary.
 
