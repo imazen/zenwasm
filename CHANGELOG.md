@@ -5,6 +5,18 @@ All notable changes to the zenwasm crates are documented here. The three crates
 
 ## [Unreleased]
 
+### Changed
+
+- `wasmtime` requirement written out as `43.0.2` instead of the truncated `43`,
+  and `thiserror` as `2.0.20` instead of `2`. Lockfile refreshed (21 packages);
+  no zen-family crate moved.
+- **`wasmtime` deliberately held at 43.** Its MSRV ladder lines up one-to-one
+  with releases — 43.0.2 needs rustc 1.91.0, 44.0.3 needs 1.92.0, 45.0.3 needs
+  1.93.0, 46.0.3/47.0.4 need 1.94.0, and 48.0.1 needs 1.95.0. This workspace
+  declares `rust-version = "1.91"`, so 43 is exactly the newest release that
+  fits. Moving to 48 means raising the declared MSRV by four toolchain
+  releases, which is an owner decision rather than a dependency refresh.
+
 ### Fixed
 - **Pushes to `main` now cancel their superseded CI runs.** `ci.yml` keyed its concurrency group on `${{ github.head_ref || github.run_id }}`. `github.head_ref` is populated only for `pull_request` events, so on a push it was empty and the group fell through to `github.run_id` — unique per run, so no two pushes ever shared a group and `cancel-in-progress` could never fire. Every push started a full matrix that ran to completion even when several commits landed seconds apart. Now keyed on `${{ github.ref }}`, which is set for both event types (`refs/heads/main` on push, `refs/pull/N/merge` on a PR), so PR cancellation is unchanged and consecutive pushes supersede each other.
 

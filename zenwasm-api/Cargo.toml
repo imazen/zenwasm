@@ -24,4 +24,4 @@ exclude = [
 [dependencies]
 zenwasm-types = { path = "../zenwasm-types" , version = "0.1.0" }
 libloading = "0.9"
-thiserror = "2"
+thiserror = "2.0.20"
